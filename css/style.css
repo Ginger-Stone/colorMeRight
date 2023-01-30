@@ -8,8 +8,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  /* justify-content: flex-start;
-  align-items: center; */
   overflow-y: hidden;
 }
 
@@ -144,14 +142,14 @@ body {
   #counter {
     grid-column-start: 1;
     grid-column-end: span 2;
-    grid-row-start: 3;
+    grid-row-start: 4;
     grid-row-end: span 1;
   }
 
   #score-board {
     grid-column-start: 1;
     grid-column-end: span 2;
-    grid-row-start: 4;
+    grid-row-start: 5;
     grid-row-end: span 1;
     padding: 20px;
   }
