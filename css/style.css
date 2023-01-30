@@ -1,0 +1,152 @@
+body {
+  position: relative;
+  height: calc(100vh - 20px);
+  padding: 0;
+  margin: 0;
+  /* margin-left: 20px; */
+  background-color: #121212;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+#game-zone {
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+  /* width: 90vmin;
+  height: 90vmin; */
+  /* The data flowing in one direction rather than two in grid makes it easier to maintain the sizes of the blocks */
+  display: flex;
+  flex-wrap: wrap;
+}
+.block {
+  background-color: aliceblue;
+  border: 0.3px solid black;
+  /* width: calc(100vmin / 4.5);
+  height: calc(100vmin / 4.5); */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block16 {
+  width: calc(100vmin / 4.5);
+  height: calc(100vmin / 4.5);
+}
+
+.block9 {
+  width: calc(100vmin / 3.5);
+  height: calc(100vmin / 3.5);
+}
+
+.block4 {
+  width: calc(100vmin / 2.5);
+  height: calc(100vmin / 2.5);
+}
+
+.active {
+  z-index: 10;
+  outline: 3px solid rgb(158, 209, 253) !important;
+}
+
+#counter {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 1;
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+
+  /* width: calc(90vmin - 0.5vmin); */
+  height: fit-content;
+  margin: 0;
+  padding: 20px 0;
+  z-index: 10;
+  font-weight: bolder;
+  font-size: 4em;
+  background-color: rgba(205, 244, 244, 0.8);
+  /* visibility: hidden; */
+}
+
+#score-board {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+  grid-row-end: span 1;
+  background-color: rgba(205, 244, 244, 0.5);
+  padding: 50px;
+  font-size: 4em;
+  text-align: center;
+}
+#score-board h1 {
+  margin: 0;
+  padding: 0;
+}
+
+#score-board p {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+#game-over {
+  position: absolute;
+  z-index: 15;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  background-color: rgba(205, 244, 244, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  visibility: hidden;
+}
+#game-over h1,
+#game-over p,
+#game-over form {
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+#game-over h1 {
+  text-transform: uppercase;
+}
+
+#game-over p {
+  font-size: 4em;
+}
+
+@media screen and (max-width: 768px) {
+  #game-zone {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+  }
+
+  #counter {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 3;
+    grid-row-end: span 1;
+  }
+
+  #score-board {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 4;
+    grid-row-end: span 1;
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Me Right - A game of memory and colors</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="game-zone">
+      <!-- <div id="0" class="block" onClick="getBlock(this.id)"></div> -->
+    </div>
+
+    <div id="counter">Color Me Right</div>
+    <div id="score-board">
+      <h1>Score</h1>
+      <p id="score">0</p>
+    </div>
+
+    <div id="game-over">
+      <h1>Game Over</h1>
+      <p>Your Score: <span id="final-score">40</span></p>
+
+      <div class="new-game">
+        <form action="">
+  <label for="levels">Choose Level</label>
+  <select name="levels" id="levels">
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+  </select>
+  <br><br>
+  <input type="submit" onclick="newGame(event)" value="New Game">
+</form>
+
+    <!-- JS -->
+    <script src="./js/script.js"></script>
+  </body>
+</html>
