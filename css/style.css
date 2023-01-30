@@ -151,5 +151,6 @@ body {
     grid-column-end: span 2;
     grid-row-start: 4;
     grid-row-end: span 1;
+    padding: 20px;
   }
 }
