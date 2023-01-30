@@ -23,6 +23,8 @@ body {
   /* The data flowing in one direction rather than two in grid makes it easier to maintain the sizes of the blocks */
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center;
+  align-items: flex-start; */
 }
 .block {
   background-color: aliceblue;
@@ -152,5 +154,9 @@ body {
     grid-row-start: 4;
     grid-row-end: span 1;
     padding: 20px;
+  }
+
+  .active {
+    outline: none;
   }
 }

@@ -118,6 +118,11 @@ function colorToGuess() {
       console.log(guessed);
       document.getElementById("counter").innerHTML =
         colors[currentToFind].color;
+      document.getElementById("counter").style.backgroundColor =
+        colors[currentToFind].value;
+      document.getElementById("counter").style.textTransform = "uppercase";
+      document.getElementById("counter").style.color =
+        colors[currentToFind].textColor;
     } else {
       colorToGuess();
     }
@@ -193,6 +198,9 @@ function newGame(event) {
   let newLevel = document.getElementById("levels").value;
   let gameOverDisplay = document.getElementById("game-over");
   gameOverDisplay.style.visibility = "hidden";
+  document.getElementById("score").innerHTML = score;
+  document.getElementById("counter").style.color = "rgba(205, 244, 244, 0.8)";
+  document.getElementById("counter").innerHTML = "Color Me Right";
   switch (newLevel) {
     case "1":
       gridCount = 4;
