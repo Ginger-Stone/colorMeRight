@@ -99,6 +99,10 @@ body {
 }
 
 #game-over {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
   position: absolute;
   z-index: 15;
   width: 100%;
@@ -157,4 +161,10 @@ body {
   .active {
     outline: none;
   }
+
+  #game-over {
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 4;
+  grid-row-end: span 2;
 }
