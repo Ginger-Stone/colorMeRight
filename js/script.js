@@ -169,6 +169,7 @@ function generateGameBoard(gridCount) {
 }
 
 function gameOver() {
+  gameOverStatus = true;
   let gameOverDisplay = document.getElementById("game-over");
   let finalScore = document.getElementById("final-score");
   finalScore.innerHTML = score;
@@ -176,18 +177,27 @@ function gameOver() {
 }
 
 function getBlock(clickedId) {
-  clickedId = parseInt(clickedId, 16);
-  console.log(colors[clickedId].color);
-  console.log(colors[toFind].color);
-  if (clickedId === toFind) {
-    clickedId = clickedId.toString(16);
-    document.getElementById(clickedId).style.backgroundColor =
-      colors[toFind].value;
-    score += 10;
-    colorToGuess();
-    document.getElementById("score").innerHTML = score;
-  } else {
-    gameOver();
+  if (!gameOverStatus) {
+    clickedId = parseInt(clickedId, 16);
+    console.log(colors[clickedId].color);
+    console.log(colors[toFind].color);
+    if (clickedId === toFind) {
+      clickedId = clickedId.toString(16);
+      document.getElementById(clickedId).style.backgroundColor =
+        colors[toFind].value;
+      document.getElementById(clickedId).innerHTML = "✔️";
+      score += 10;
+      colorToGuess();
+      document.getElementById("score").innerHTML = score;
+    } else {
+      document.getElementById(clickedId).style.backgroundColor =
+        colors[clickedId].value;
+      document.getElementById(clickedId).innerHTML = "❌";
+      document.getElementById(toFind).style.backgroundColor =
+        colors[toFind].value;
+      document.getElementById(toFind).innerHTML = "✔️";
+      gameOver();
+    }
   }
 }
 
