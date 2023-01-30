@@ -105,8 +105,8 @@ body {
   grid-row-end: span 2;
   position: absolute;
   z-index: 15;
-  width: 100%;
-  height: 100vh;
+  /* width: 100%;
+  height: 100vh; */
   text-align: center;
   background-color: rgba(205, 244, 244, 1);
   display: flex;
@@ -164,7 +164,7 @@ body {
 
   #game-over {
   grid-column-start: 1;
-  grid-column-end: span 1;
+  grid-column-end: span 2;
   grid-row-start: 4;
   grid-row-end: span 2;
 }
