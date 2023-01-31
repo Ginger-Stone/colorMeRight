@@ -66,8 +66,9 @@ function arrowKeyMovement(key) {
   console.log(currentActiveId);
   document.getElementById(currentActiveId).classList.add("active");
 }
-function randomized() {
-  return Math.ceil(Math.random() * gridCount) - 1;
+function randomized(val = 16) {
+  console.log("randomize by:" + val);
+  return Math.ceil(Math.random() * val) - 1;
 }
 function randomColorsGenerator() {
   while (randomizedColors.length < gridCount) {
@@ -80,12 +81,16 @@ function randomColorsGenerator() {
   }
 }
 function colorBoard() {
+  randomColorsGenerator();
+  console.log(randomizedColors);
   let pos = 0;
   randomizedColors.forEach((element) => {
+    console.log(colors[element]);
     let block = document.getElementById(pos.toString(16));
-    block.style.backgroundColor = colors[randomizedColors[element]].value;
-    block.innerHTML = colors[randomizedColors[element]].color;
-    block.style.color = colors[randomizedColors[element]].textColor;
+    block.style.backgroundColor = colors[element].value;
+    block.innerHTML = colors[element].color;
+    block.setAttribute("data-value", element);
+    block.style.color = colors[element].textColor;
     pos++;
   });
 }
@@ -103,26 +108,26 @@ function uncolorBoard() {
 }
 function colorToGuess() {
   if (guessed.length < gridCount) {
-    let currentToFind = randomized();
+    let currentToFind = randomized(gridCount);
     let isGuessed = false;
     // console.log(colors[currentToFind].color);
     guessed.forEach((element) => {
       console.log("guess");
       console.log(currentToFind);
       console.log(element);
-      if (currentToFind === element) isGuessed = true;
+      if (randomizedColors[currentToFind] === element) isGuessed = true;
     });
     if (!isGuessed) {
-      toFind = currentToFind;
+      toFind = randomizedColors[currentToFind];
       guessed.push(toFind);
       console.log(guessed);
       document.getElementById("counter").innerHTML =
-        colors[currentToFind].color;
+        colors[randomizedColors[currentToFind]].color;
       document.getElementById("counter").style.backgroundColor =
-        colors[currentToFind].value;
+        colors[randomizedColors[currentToFind]].value;
       document.getElementById("counter").style.textTransform = "uppercase";
       document.getElementById("counter").style.color =
-        colors[currentToFind].textColor;
+        colors[randomizedColors[currentToFind]].textColor;
     } else {
       colorToGuess();
     }
@@ -138,7 +143,7 @@ function generateGameBoard(gridCount) {
     let div = document.createElement("div");
     div.classList.add("block");
     div.id = index.toString(16);
-    div.setAttribute("onclick", "getBlock(this.id)");
+    div.setAttribute("onclick", "getBlock(this)");
     if (gridCount === 16) {
       div.classList.add("block16");
     } else if (gridCount === 9) {
@@ -149,13 +154,13 @@ function generateGameBoard(gridCount) {
     gameZone.appendChild(div);
   }
 
-  randomColorsGenerator();
   let pos = 0;
   colorBoard();
   let i = 0,
     countDownTime = 4;
   const counter = setInterval(() => {
-    console.log(i++);
+    // console.log(i++);
+    i++;
     if (countDownTime - i <= 3) {
       document.getElementById("counter").style.visibility = "visible";
       document.getElementById("counter").innerHTML = countDownTime - i;
@@ -176,12 +181,16 @@ function gameOver() {
   gameOverDisplay.style.visibility = "visible";
 }
 
-function getBlock(clickedId) {
+function getBlock(clicked) {
+  //   let colorClicked = clicked.getAttribute("data-value");
+  //   console.log(colors[randomizedColors[parseInt(colorClicked, 16)]].color);
   if (!gameOverStatus) {
+    let clickedId = clicked.id;
+    let clickedColor = clicked.getAttribute("data-value");
     clickedId = parseInt(clickedId, 16);
-    console.log(colors[clickedId].color);
-    console.log(colors[toFind].color);
-    if (clickedId === toFind) {
+    console.log(typeof parseInt(clickedColor), parseInt(clickedColor));
+    console.log(typeof toFind, toFind);
+    if (parseInt(clickedColor) === toFind) {
       clickedId = clickedId.toString(16);
       document.getElementById(clickedId).style.backgroundColor =
         colors[toFind].value;
@@ -191,11 +200,11 @@ function getBlock(clickedId) {
       document.getElementById("score").innerHTML = score;
     } else {
       document.getElementById(clickedId).style.backgroundColor =
-        colors[clickedId].value;
+        colors[clickedColor].value;
       document.getElementById(clickedId).innerHTML = "❌";
-      document.getElementById(toFind).style.backgroundColor =
-        colors[toFind].value;
-      document.getElementById(toFind).innerHTML = "✔️";
+      //   document.getElementById(toFind).style.backgroundColor =
+      //     colors[toFind].value;
+      //   document.getElementById(toFind).innerHTML = "✔️";
       gameOver();
     }
   }
