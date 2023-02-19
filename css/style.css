@@ -11,6 +11,21 @@ body {
   overflow-y: hidden;
 }
 
+#start-game {
+  background-color: rgba(205, 244, 244, 1);
+  padding: 0 50px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  font-size: 1.4em;
+  height: calc(100vh - 0px);
+  width: calc(100vw - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 #game-zone {
   grid-column-start: 1;
   grid-column-end: span 1;
@@ -132,9 +147,9 @@ body {
   font-size: 4em;
 }
 
-#game-over .button {
+.button {
   font-size: 2em;
-  padding: 5px;
+  padding: 5px 10px;
   margin-bottom: 20px;
 }
 
@@ -169,8 +184,9 @@ body {
   }
 
   #game-over {
-  grid-column-start: 1;
-  grid-column-end: span 2;
-  grid-row-start: 4;
-  grid-row-end: span 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 4;
+    grid-row-end: span 2;
+  }
 }

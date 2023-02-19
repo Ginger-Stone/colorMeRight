@@ -7,7 +7,20 @@
     <title>Color Me Right - A game of memory and colors</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
+
   <body>
+    <div id="start-game">
+      <div class="rules">
+        <h1>Rules of the Game</h1>
+        <p>
+          The game is quite simple actually. You are given a certain amount of
+          time to cram/memorize/take a picture with your mind of colors provided
+          in a grid. Then all colors are grayed out and you have to randomly
+          guess the color provided is in which block😊
+        </p>
+      </div>
+      <button class="button" onclick="newGame(event)">Start Game</button>
+    </div>
     <div id="game-zone">
       <!-- <div id="0" class="block" onClick="getBlock(this.id)"></div> -->
     </div>
@@ -20,21 +33,29 @@
 
     <div id="game-over">
       <h1>Game Over</h1>
-      <p>Your Score: <span id="final-score">40</span></p>
+      <p>Your Score: <span id="final-score">0</span></p>
+      <p>Time Taken: <span id="time-taken">0</span> s</p>
 
       <div class="new-game">
         <form action="">
-  <label for="levels">Choose Level</label>
-  <select name="levels" id="levels">
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-  </select>
-  <br><br>
-  <input class="button" type="submit" onclick="newGame(event)" value="New Game">
-</form>
+          <label for="levels">Choose Level</label>
+          <select name="levels" id="levels">
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+          </select>
+          <br /><br />
+          <input
+            class="button"
+            type="submit"
+            onclick="newGame(event)"
+            value="New Game"
+          />
+        </form>
 
-    <!-- JS -->
-    <script src="./js/script.js"></script>
+        <!-- JS -->
+        <script src="./js/script.js"></script>
+      </div>
+    </div>
   </body>
 </html>

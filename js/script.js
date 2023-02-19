@@ -39,6 +39,7 @@ let gridCount = 4;
 let toFind,
   score = 0,
   gameOverStatus = false;
+let startTime, endTime;
 let randomizedColors = [],
   guessed = [];
 function arrowKeyMovement(key) {
@@ -169,15 +170,19 @@ function generateGameBoard(gridCount) {
   setTimeout(() => {
     clearInterval(counter);
     uncolorBoard();
+    startTime = new Date();
     if (guessed.length < gridCount) colorToGuess();
   }, 1000 * countDownTime);
 }
 
 function gameOver() {
+  endTime = new Date();
   gameOverStatus = true;
   let gameOverDisplay = document.getElementById("game-over");
   let finalScore = document.getElementById("final-score");
+  let timeTaken = document.getElementById("time-taken");
   finalScore.innerHTML = score;
+  timeTaken.innerHTML = Math.ceil((endTime - startTime) / 1000);
   gameOverDisplay.style.visibility = "visible";
 }
 
@@ -212,30 +217,35 @@ function getBlock(clicked) {
 
 function newGame(event) {
   event.preventDefault(); //prevents the default action of an event eg in this case prevent form submit action
-  toFind, (score = 0), (gameOverStatus = false);
-  (randomizedColors = []), (guessed = []);
-  let newLevel = document.getElementById("levels").value;
-  let gameOverDisplay = document.getElementById("game-over");
-  gameOverDisplay.style.visibility = "hidden";
-  document.getElementById("score").innerHTML = score;
-  document.getElementById("counter").style.color = "rgba(205, 244, 244, 0.8)";
-  document.getElementById("counter").innerHTML = "Color Me Right";
-  switch (newLevel) {
-    case "1":
-      gridCount = 4;
-      break;
-    case "2":
-      gridCount = 9;
-      break;
-    case "3":
-      gridCount = 16;
-      break;
+  if (gameOverStatus) {
+    toFind, (score = 0), (gameOverStatus = false);
+    (randomizedColors = []), (guessed = []);
+    let newLevel = document.getElementById("levels").value;
+    let gameOverDisplay = document.getElementById("game-over");
+    gameOverDisplay.style.visibility = "hidden";
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("counter").style.color = "rgba(205, 244, 244, 0.8)";
+    document.getElementById("counter").innerHTML = "Color Me Right";
+    switch (newLevel) {
+      case "1":
+        gridCount = 4;
+        break;
+      case "2":
+        gridCount = 9;
+        break;
+      case "3":
+        gridCount = 16;
+        break;
 
-    default:
-      break;
+      default:
+        break;
+    }
+    console.log(`new level: ${newLevel === "3"}`);
+    console.log(`grid count: ${gridCount}`);
+  } else {
+    let startGameSection = document.getElementById("start-game");
+    startGameSection.style.display = "none";
   }
-  console.log(`new level: ${newLevel === "3"}`);
-  console.log(`grid count: ${gridCount}`);
   generateGameBoard(gridCount);
 }
 
@@ -243,4 +253,4 @@ function newGame(event) {
 document.body.addEventListener("keydown", (event) =>
   arrowKeyMovement(event.code)
 );
-generateGameBoard(gridCount);
+// generateGameBoard(gridCount);
